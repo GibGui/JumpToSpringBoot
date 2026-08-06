@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 
-public class PersonController {
+public class MainController {
     @GetMapping("/hello")
     @ResponseBody
     public String hello() {
