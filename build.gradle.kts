@@ -31,6 +31,9 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testAnnotationProcessor("org.projectlombok:lombok")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation( "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+
 }
 
 tasks.withType<Test> {
