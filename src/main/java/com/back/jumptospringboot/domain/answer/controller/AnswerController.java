@@ -1,8 +1,9 @@
-package com.back.jumptospringboot.domain.answer;
+package com.back.jumptospringboot.domain.answer.controller;
 
-
-import com.back.jumptospringboot.domain.question.Question;
-import com.back.jumptospringboot.domain.question.QuestionService;
+import com.back.jumptospringboot.domain.answer.service.AnswerService;
+import com.back.jumptospringboot.domain.question.entity.Question;
+import com.back.jumptospringboot.domain.question.service.QuestionService;
+import com.back.jumptospringboot.global.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,29 +13,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequiredArgsConstructor
 @Controller
 @RequestMapping("/answer")
+@RequiredArgsConstructor
 public class AnswerController {
 
     private final QuestionService questionService;
     private final AnswerService answerService;
 
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Integer id,
-                               @Valid AnswerForm answerForm, BindingResult bindingResult ) {
-
+    public String createAnswer(Model model,
+                               @PathVariable("id") Integer id,
+                               @Valid AnswerForm answerForm,
+                               BindingResult bindingResult)
+                       {
         Question question = this.questionService.getQuestion(id);
         if(bindingResult.hasErrors()){
             model.addAttribute("question", question);
-            return "question_detail";
+            return"question_detail";
         }
 
         this.answerService.create(question, answerForm.getContent());
-        return String.format("redirect:/question/detail/%s", id);
 
+        return String.format("redirect:/question/detail/%s",id);
 
     }
-
-
 }

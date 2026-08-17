@@ -1,4 +1,4 @@
-package com.back.jumptospringboot;
+package com.back.jumptospringboot.global;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,18 +1,21 @@
-package com.back.jumptospringboot.domain.question;
+package com.back.jumptospringboot.domain.question.entity;
 
-
-import com.back.jumptospringboot.domain.answer.Answer;
+import com.back.jumptospringboot.domain.answer.entity.Answer;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
-@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
 
     @Id
@@ -27,8 +30,10 @@ public class Question {
 
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+
+    @OneToMany(mappedBy = "question",
+            cascade = CascadeType.REMOVE
+
+            , fetch = FetchType.LAZY)
     List<Answer> answerList = new ArrayList<>();
-
-
 }
