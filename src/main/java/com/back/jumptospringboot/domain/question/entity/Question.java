@@ -1,6 +1,7 @@
 package com.back.jumptospringboot.domain.question.entity;
 
 import com.back.jumptospringboot.domain.answer.entity.Answer;
+import com.back.jumptospringboot.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,11 +30,14 @@ public class Question {
     private String content;
 
     private LocalDateTime createDate;
-
+    private LocalDateTime modifyDate;
 
     @OneToMany(mappedBy = "question",
             cascade = CascadeType.REMOVE
 
             , fetch = FetchType.LAZY)
     List<Answer> answerList = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private SiteUser author;
 }

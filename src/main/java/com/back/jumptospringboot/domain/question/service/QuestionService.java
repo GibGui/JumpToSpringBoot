@@ -4,6 +4,7 @@ package com.back.jumptospringboot.domain.question.service;
 import com.back.jumptospringboot.domain.question.entity.Question;
 import com.back.jumptospringboot.domain.question.repository.QuestionRepository;
 import com.back.jumptospringboot.global.DataNotFoundException;
+import com.back.jumptospringboot.user.SiteUser;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -47,12 +48,13 @@ public class QuestionService {
         return this.questionRepository.findAll(pageable);
     }
 
-    public void create(String subject, String content){
+    public void create(String subject, String content, SiteUser user){
         Question question = new Question();
 
         question.setSubject(subject);
         question.setContent(content);
         question.setCreateDate(LocalDateTime.now());
+        question.setAuthor(user);
         this.questionRepository.save(question);
     }
 

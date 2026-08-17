@@ -2,6 +2,7 @@ package com.back.jumptospringboot.domain.answer.entity;
 
 
 import com.back.jumptospringboot.domain.question.entity.Question;
+import com.back.jumptospringboot.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Answer {
 
 
     private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,5 +38,8 @@ public class Answer {
         this.content = content;
         this.setCreateDate(LocalDateTime.now());
     }
+
+    @ManyToOne
+    private SiteUser author;
 
 }
